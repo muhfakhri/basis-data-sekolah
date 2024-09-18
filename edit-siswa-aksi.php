@@ -9,5 +9,5 @@ $kelas = $_POST['id-kelas'];
 
 mysqli_query($koneksi,"UPDATE siswa SET nama_siswa='$nama', tanggal_lahir='$tanggal', alamat='$alamat', gender='$gender', id-kelas='$kelas' where nisn='$nisn'");
 
-header("location: Main.php");
+header("location: Main.php"); //weewwee
 ?>
