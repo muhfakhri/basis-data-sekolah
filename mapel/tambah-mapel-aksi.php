@@ -1,4 +1,4 @@
-<?php include "connect.php";
+<?php include "../connect.php";
 
 $id = $_POST['id_mapel'];
 $nama = $_POST['nama_mapel'];
