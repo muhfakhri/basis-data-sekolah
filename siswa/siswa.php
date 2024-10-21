@@ -99,11 +99,11 @@ $DataBase = mysqli_query($koneksi, $query);
             
             <tr>
                 <td>NISN</td>
-                <td>Nama-Siswa</td>
-                <td>Alamat</td>
+                <td>NAMA SISWA</td>
+                <td>ALAMAT</td>
                 <td>TTL</td>
-                <td>Gender</td>
-                <td>ID Kelas</td>
+                <td>GENDER</td>
+                <td>ID KELAS</td>
                 <td>Action</td>
             </tr>
             

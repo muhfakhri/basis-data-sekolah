@@ -1,39 +1,39 @@
 <?php 
 include '../connect.php';
 
-// Get the search query if available
+
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Set default limit (number of rows per page), 10 if not specified
+
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
 
-// Get the current page number from the URL, default is 1
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-// Calculate the starting row for the current page
 $start = ($page - 1) * $limit;
 
-// Modify the query based on the search input
+
 if ($search != '') {
     $query = "SELECT * FROM kelas WHERE nama_kelas LIKE '%$search%' LIMIT $start, $limit";
     $count_query = "SELECT COUNT(id_kelas) AS total FROM kelas WHERE nama_kelas LIKE '%$search%'";
 } else {
-    // Original query if no search is performed
-    $query = "SELECT * FROM siswa LIMIT $start, $limit";
+    
+    $query = "SELECT * FROM kelas LIMIT $start, $limit";
     $count_query = "SELECT COUNT(id_kelas) AS total FROM kelas";
 }
 
-// Execute the query to count total rows
+
 $result = mysqli_query($koneksi, $count_query);
 $row = mysqli_fetch_array($result);
 $total_records = $row['total'];
 
-// Calculate total pages based on total records and limit per page
+
 $total_pages = ceil($total_records / $limit);
 
-// Fetch the data for the current page
+
 $DataBase = mysqli_query($koneksi, $query);
 ?>
+
 <html>
 <head>
 <title>Home | admin</title>
@@ -60,7 +60,6 @@ $DataBase = mysqli_query($koneksi, $query);
             <li><a href="../kelas/kelas.php"><i class="icon-sitemap"></i>Data Kelas</a></li>
             <li><a href="../mapel/mapel.php"><i class="icon-book"></i>Data Mapel</a></li>
 		</ul>
-
 </div>
 <div class="main">
     <div class="isimain">
@@ -89,20 +88,18 @@ $DataBase = mysqli_query($koneksi, $query);
 
 </form>
       
-        <a href="tambah-kelas.php"><button type="submit">
+        <a href="tambah-mapel.php"><button type="submit">
     <i class="icon-plus"></i> TAMBAH</button></a>
 
         <table border="1">
 
-
 <tr>
-    <td>ID</td>
-    <td>Kelas</td>
+    <td>Id Kelas</td>
+    <td>Nama Kelas</td>
     <td>Actions</td>
+  
     
 </tr>
-
-
 
 
 
@@ -111,16 +108,20 @@ $DataBase = mysqli_query($koneksi, $query);
 
    <td><?php echo $show ['id_kelas'];?></td>
    <td><?php echo $show ['nama_kelas'];?></td>
-    
-    <td>                                   
-     <a href="delete-kelas.php?id=<?php echo $show['id_kelas']; ?>"class="icon-trash"></a>
-     <a href="edit-kelas.php?id=<?php echo $show['id_kelas']; ?>"class="icon-edit"></a>
+  
+
+   <td>                                   
+    <a href="delete-kelas.php?id=<?php echo $show['id_kelas']; ?>"class="icon-trash"></a>
+    <a href="edit-kelas.php?id=<?php echo $show['id_kelas']; ?>"class="icon-edit"></a>
+   </td>
+ 
 
 </tr>
 <?php
 }
 ?>
 </table>
+
 <div class="pagination">
             <?php if ($page > 1): ?>
                 <a href="kelas.php?page=<?= $page - 1 ?>&limit=<?= $limit ?>&search=<?= isset($_GET['search']) ? $_GET['search'] : '' ?>">Prev</a>
